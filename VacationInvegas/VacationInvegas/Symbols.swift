@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Symbols: View {
     @State private var shouldBounce = false
+    @State private var shouldRoate = false
     
     var body: some View {
         VStack {
@@ -43,17 +44,25 @@ struct Symbols: View {
             Image(systemName: "cloud.sun.rain.fill")
                 .font(.largeTitle)
                 .imageScale(.large)
-                .foregroundStyle(.tint)
-            
-            Image(systemName: "globe")
+                .foregroundStyle(.gray, .yellow, .mint)
+                .symbolEffect(.bounce, value: shouldBounce)
+                .onTapGesture {
+                    shouldBounce.toggle()
+                }
+            Image(systemName: "arrow.clockwise.square")
                 .font(.largeTitle)
                 .imageScale(.large)
-                .foregroundStyle(.tint)
+                .foregroundStyle(.blue.mix(with: .red, by: 0.25))
+                .symbolEffect(.rotate, value: shouldRoate)
+                .onTapGesture {
+                    shouldRoate.toggle()
+                }
             
-            Image(systemName: "globe")
+            Image(systemName: "sun.max.fill")
                 .font(.largeTitle)
                 .imageScale(.large)
-                .foregroundStyle(.tint)
+                .foregroundStyle(.yellow)
+                .symbolEffect(.breathe)
         }
         .padding()
     }
