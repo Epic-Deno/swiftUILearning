@@ -32,4 +32,13 @@ class Place {
         self.longitude = longitude
         self.interested = interested
     }
+    
+    static var previewPlace: [Place] {
+        [
+            Place(name: "FangChengBao", latitude: 36.1129, longitude: -115.1765, interested: true),
+            Place(name: "SuSeven", latitude: 36.1125, longitude: -115.1707, interested: true),
+            Place(name: "YangWang", latitude: 36.1247, longitude: -115.1721, interested: true),
+            Place(name: "YUSeven", latitude: 36.0955, longitude: -115.1761, interested: false)
+        ]
+    }
 }
