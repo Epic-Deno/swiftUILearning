@@ -21,8 +21,10 @@ class Place {
     var loaction: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+
     var image: Image {
-        Image(name.lowercased().replacingOccurrences(of: " ", with: ""))
+        //    name.lowercased().replacingOccurrences(of: " ", with: "")
+        Image(name)
     }
     
     // "FangChengBao", "SU 7"
@@ -48,7 +50,7 @@ class Place {
             Place(name: "FangChengBao", latitude: 36.1129, longitude: -115.1765, interested: true),
             Place(name: "SuSeven", latitude: 36.1125, longitude: -115.1707, interested: true),
             Place(name: "YangWang", latitude: 36.1247, longitude: -115.1721, interested: true),
-            Place(name: "YUSeven", latitude: 36.0955, longitude: -115.1761, interested: false)
+            Place(name: "USeven", latitude: 36.0955, longitude: -115.1761, interested: false)
         ]
     }
 }

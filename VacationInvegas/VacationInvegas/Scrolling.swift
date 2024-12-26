@@ -11,9 +11,9 @@ struct Scrolling: View {
     var body: some View {
         ScrollView {
             VStack {
-                ScrollImage(image: ._03_08_1)
+                ScrollImage(image: .yangWang)
                 
-                ScrollImage(image: .su719)
+                ScrollImage(image: .uSeven)
                 
                 ScrollImage(image: .su761)
                 
