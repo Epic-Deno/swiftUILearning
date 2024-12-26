@@ -33,6 +33,16 @@ class Place {
         self.interested = interested
     }
     
+    @MainActor
+    static var preview: ModelContainer {
+        let container = try! ModelContainer(for: Place.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        
+        for place in previewPlace {
+            container.mainContext.insert(place)
+        }
+        return container
+    }
+    
     static var previewPlace: [Place] {
         [
             Place(name: "FangChengBao", latitude: 36.1129, longitude: -115.1765, interested: true),
