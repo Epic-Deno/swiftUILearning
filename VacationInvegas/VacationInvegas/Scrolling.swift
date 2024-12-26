@@ -7,22 +7,27 @@
 
 import SwiftUI
 
-struct ScrollImages: View {
-    let image: ImageResource
-    
+struct Scrolling: View {
     var body: some View {
-        Image(image)
-            .resizable()
-            .scaledToFit()
-            .clipShape(.rect(cornerRadius: 20))
-            .scrollTransition { content, phase in
-                content
-                    .scaleEffect(phase.isIdentity ? 1 : 0.5)
-                    .opacity(phase.isIdentity ? 1 : 0.5)
+        ScrollView {
+            VStack {
+                ScrollImage(image: ._03_08_1)
+                
+                ScrollImage(image: .su719)
+                
+                ScrollImage(image: .su761)
+                
+                ScrollImage(image: ._05_03)
+                
+                ScrollImage(image: ._05_04)
+                
+                ScrollImage(image: ._03_08_1)
             }
+            .padding()
+        }
     }
 }
 
 #Preview {
-    ScrollImages(image: .su719)
+    Scrolling()
 }
