@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ScrollImages: View {
+    let image: ImageResource
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(image)
+            .resizable()
+            .scaledToFit()
+            .clipShape(.rect(cornerRadius: 20))
+            .scrollTransition { content, phase in
+                content
+                    .scaleEffect(phase.isIdentity ? 1 : 0.5)
+                    .opacity(phase.isIdentity ? 1 : 0.5)
+            }
     }
 }
 
 #Preview {
-    ScrollImages()
+    ScrollImages(image: .su719)
 }
