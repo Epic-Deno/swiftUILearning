@@ -65,7 +65,7 @@ struct PlaceList: View {
                         withAnimation {
                             filterByInterested.toggle()
                         }
-                    }
+                    }.tint(filterByInterested ? .yellow : .blue)
                 }
             }
             .sheet(isPresented: $showImage) {
