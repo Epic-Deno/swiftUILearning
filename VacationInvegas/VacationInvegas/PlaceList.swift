@@ -61,7 +61,7 @@ struct PlaceList: View {
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Filter", systemImage: "star") {
+                    Button("Filter", systemImage: filterByInterested ? "star.fill" :  "star") {
                         withAnimation {
                             filterByInterested.toggle()
                         }
