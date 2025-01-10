@@ -12,7 +12,7 @@ struct PlaceList: View {
     @Query(sort: \Place.name) private var places: [Place]
     
     @State private var showImage = false
-    
+    @State private var  serachText = ""
     var body: some View {
         NavigationStack{
             List(places) { place in
@@ -34,6 +34,8 @@ struct PlaceList: View {
                     }
                 }
             }
+            .navigationTitle("Places")
+            .searchable(text: $serachText, prompt: "Fill in place")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Show Images", systemImage: "photo") {
