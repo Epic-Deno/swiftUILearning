@@ -32,7 +32,7 @@ struct PlaceList: View {
     
     var body: some View {
         NavigationStack{
-            List((try? places.filter(predicate))) { place in
+            List((try? places.filter(predicate)) ?? places) { place in
                 HStack {
                     place.image
                         .resizable()
