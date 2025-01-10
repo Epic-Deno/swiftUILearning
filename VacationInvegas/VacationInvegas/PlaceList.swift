@@ -52,7 +52,7 @@ struct PlaceList: View {
                 }
             }
             .navigationTitle("Places")
-            .searchable(text: $serachText, prompt: "Fill in place")
+            .searchable(text: $serachText, prompt: "Find in place")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Show Images", systemImage: "photo") {
