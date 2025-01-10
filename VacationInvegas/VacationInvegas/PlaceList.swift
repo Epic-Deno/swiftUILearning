@@ -13,9 +13,26 @@ struct PlaceList: View {
     
     @State private var showImage = false
     @State private var  serachText = ""
+    @State private var filterByInterested = false
+    
+    private var predicate: Predicate<Place> {
+        #Predicate<Place> {
+            if  !serachText.isEmpty && filterByInterested {
+                $0.name.localizedStandardContains(serachText) && $0.interested
+            } else if !serachText.isEmpty {
+                $0.name.localizedStandardContains(serachText)
+            } else if filterByInterested {
+                $0.interested
+            } else {
+                true
+            }
+        }
+        
+    }
+    
     var body: some View {
         NavigationStack{
-            List(places) { place in
+            List((try? places.filter(predicate))) { place in
                 HStack {
                     place.image
                         .resizable()
