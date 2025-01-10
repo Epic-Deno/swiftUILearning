@@ -53,10 +53,18 @@ struct PlaceList: View {
             }
             .navigationTitle("Places")
             .searchable(text: $serachText, prompt: "Find in place")
+            .animation(.default, value: serachText)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Show Images", systemImage: "photo") {
                         showImage.toggle()
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Filter", systemImage: "star") {
+                        withAnimation {
+                            filterByInterested.toggle()
+                        }
                     }
                 }
             }
