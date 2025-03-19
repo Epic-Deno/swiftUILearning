@@ -26,6 +26,7 @@ struct MapView: View {
                 }
             }
         }
+        .toolbarBackground(.automatic)
     }
 }
 
