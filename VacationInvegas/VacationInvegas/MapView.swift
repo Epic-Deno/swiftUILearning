@@ -19,7 +19,7 @@ struct MapView: View {
             Annotation(place.interested ? "Place of Interseted" : "Not Interseted", coordinate: place.loaction) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 7).fill(.ultraThinMaterial).stroke(.secondary, lineWidth: 5)
-                    Image(systemName: place.interested ? "face.smiling" : "hand.thumbsdown").padding(5)
+                    Image(systemName: place.interested ? "face.smiling" : "hand.thumbsdown").foregroundStyle(place.interested ? .yellow : .gray).padding(5)
                 }
                 .onTapGesture {
                     place.interested.toggle()
