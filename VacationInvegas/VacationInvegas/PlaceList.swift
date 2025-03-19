@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct PlaceList: View {
     @Query(sort: \Place.name) private var places: [Place]
@@ -33,27 +34,33 @@ struct PlaceList: View {
     var body: some View {
         NavigationStack{
             List((try? places.filter(predicate)) ?? places) { place in
-                HStack {
-                    place.image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(.rect(cornerRadius: 7))
-                        .frame(width: 100, height: 100)
-                    
-                    Text(place.name)
-                    
-                    Spacer()
-                    
-                    if place.interested {
-                        Image(systemName: "star.fill")
-                            .foregroundStyle(.yellow)
-                            .padding(.trailing)
+                NavigationLink(value: place) {
+                    HStack {
+                        place.image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(.rect(cornerRadius: 7))
+                            .frame(width: 100, height: 100)
+                        
+                        Text(place.name)
+                        
+                        Spacer()
+                        
+                        if place.interested {
+                            Image(systemName: "star.fill")
+                                .foregroundStyle(.yellow)
+                                .padding(.trailing)
+                        }
                     }
                 }
             }
             .navigationTitle("Places")
             .searchable(text: $serachText, prompt: "Find in place")
             .animation(.default, value: serachText)
+            .navigationDestination(for: Place.self) { place in
+                MapView(place: place, position: .camera(MapCamera(
+                    centerCoordinate: place.loaction, distance: 1000, heading: 250, pitch: 80)))
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Show Images", systemImage: "photo") {
