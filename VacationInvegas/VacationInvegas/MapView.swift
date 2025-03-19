@@ -15,11 +15,13 @@ struct MapView: View {
     @State var position: MapCameraPosition
     
     var body: some View {
-        Map()
+        Map(position: $position)
     }
 }
 
 #Preview {
-    MapView(place: Place.previewPlace[0], position: .camera(MapCamera(
-        centerCoordinate: Place.previewPlace[0].loaction, distance: 1000, heading: 250, pitch: 80)))
+    @Previewable @State var place = Place.previewPlace[2]
+    
+    MapView(place: place, position: .camera(MapCamera(
+        centerCoordinate: place.loaction, distance: 1000, heading: 250, pitch: 80)))
 }
