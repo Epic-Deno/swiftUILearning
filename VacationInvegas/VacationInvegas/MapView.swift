@@ -15,12 +15,22 @@ struct MapView: View {
     @State var position: MapCameraPosition
     
     var body: some View {
-        Map(position: $position)
+        Map(position: $position) {
+            Annotation(place.interested ? "Place of Interseted" : "Not Interseted", coordinate: place.loaction) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 7).fill(.ultraThinMaterial).stroke(.secondary, lineWidth: 5)
+                    Image(systemName: place.interested ? "face.smiling" : "hand.thumbsdown").padding(5)
+                }
+                .onTapGesture {
+                    place.interested.toggle()
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    @Previewable @State var place = Place.previewPlace[2]
+    @Previewable @State var place = Place.previewPlace[1]
     
     MapView(place: place, position: .camera(MapCamera(
         centerCoordinate: place.loaction, distance: 1000, heading: 250, pitch: 80)))
