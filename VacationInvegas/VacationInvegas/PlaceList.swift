@@ -15,6 +15,7 @@ struct PlaceList: View {
     @State private var showImage = false
     @State private var  serachText = ""
     @State private var filterByInterested = false
+    @Namespace private var namespace
     
     private var predicate: Predicate<Place> {
         #Predicate<Place> {
@@ -53,6 +54,7 @@ struct PlaceList: View {
                         }
                     }
                 }
+                .matchedTransitionSource(id: 1, in: namespace)
             }
             .navigationTitle("Places")
             .searchable(text: $serachText, prompt: "Find in place")
@@ -60,6 +62,7 @@ struct PlaceList: View {
             .navigationDestination(for: Place.self) { place in
                 MapView(place: place, position: .camera(MapCamera(
                     centerCoordinate: place.loaction, distance: 1000, heading: 250, pitch: 80)))
+                .navigationTransition(.zoom(sourceID: 1, in: namespace))
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
