@@ -23,13 +23,20 @@ struct SampleTripRating {
 
 struct TripsChart: View {
     var body: some View {
-        Chart(SampleRating.ratings, id: \.place) { rating in
-            SectorMark(angle: .value("Ratings", rating.rating), innerRadius: .ratio(0.6), angularInset: 1)
-                .cornerRadius(7)
-                .foregroundStyle(by: .value("place",rating.place))
+        Chart(SampleTripRating.ratings, id: \.trip) { rating in
+            PointMark(
+                x: .value("Year", rating.trip),
+                y: .value("Rating", rating.rating)
+            )
+            
+            LinePlot(x: "Years", y: "Ratings") { x in
+                return x * 6 + 50
+            }
+            .foregroundStyle(.purple)
         }
+        .chartXScale(domain: 1...5)
+        .chartYScale(domain: 1...100)
         .padding()
-        .frame(height: 500)
     }
 }
 
