@@ -55,6 +55,12 @@ struct PlaceList: View {
                     }
                 }
                 .matchedTransitionSource(id: 1, in: namespace)
+                .swipeActions(edge: .leading) {
+                    Button(place.interested ? "Interested" : "Not Interested", systemImage: "star") {
+                        place.interested.toggle()
+                    }
+                    .tint(place.interested ? .yellow : .gray)
+                }
             }
             .navigationTitle("Places")
             .searchable(text: $serachText, prompt: "Find in place")
