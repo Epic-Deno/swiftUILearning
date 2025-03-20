@@ -27,6 +27,8 @@ struct VegasChart: View {
                 .cornerRadius(7)
                 .foregroundStyle(by: .value("place",rating.place))
         }
+        .padding()
+        .frame(height: 500)
     }
 }
 
